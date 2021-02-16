@@ -1,10 +1,9 @@
 {% extends 'base.html'%}
 {%block content%}
-
-<form method="POST" action="#">
+<form  method="POST" action="#">
     <div class="form-group col-md-2" >
     {% csrf_token %}
-    <font-color="green">
+
 FullName:<input class="form-control" type="text" name="fname" required>
 RollNo:<input class="form-control" type="text",name="rlno" required><br>
 EmailId:<input class="form-control" type="text" name="email" required><br>
@@ -13,6 +12,5 @@ Gender:<input type="radio",value="Male",name="gender">Male
        <input type="radio",value="Female",name="gender">Female
 <button  class="btn btn-success" type="submit">Submit</button>
 </div>
-</font-color>
-</form>
+</form>  
 {% endblock %}
