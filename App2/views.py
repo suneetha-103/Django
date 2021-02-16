@@ -1,8 +1,10 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 import random
-from App2.models import Student
+from App2.models import Student,Registration
 from App2.forms import StudentForm
+from django.contrib import messages
+
 # Create your views here.
 def stat(request):
     return HttpResponse('I am from App 2')
@@ -61,7 +63,16 @@ def signup(request):
         form=StudentForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request,"Your Registration is Sucesfully completed...... ")
             return redirect('signup')
     form=StudentForm()
     return render(request,"signup.html",{'form':form}) 
-
+def registration(request):
+    if request.method=="POST":
+        uname=request.POST.get('uname')
+        password=request.POST.get('password')
+        email=request.POST.get('email')
+        im=request.FILES['image']
+        Registration.objects.create(Username=uname,Email=email,PassWord=password,Image=im)
+        return HttpResponse("ok....")
+    return render(request,'registration.html')

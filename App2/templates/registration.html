@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+{%block content%}
+<form  method="POST" action="#" enctype="multipart/form-data">
+    <div class="form-group col-md-2" >
+    {% csrf_token %}
+
+Username:<input class="form-control" type="text"  placeholder="Enter your Name" name="uname" required>
+Password:<input class="form-control" type="password" placeholder="Enter your Password" name="password" required><br>
+EmailId:<input class="form-control" type="text"  placeholder="Enter your Email" name="email" required><br>
+<b style="font-size: 20px;">Image</b>
+<input type="file" name="image" class="form_control mt-2">
+<button class="btn btn-primary" type="submit">Submit</button>
+</div>
+</form>  
+{% endblock %}

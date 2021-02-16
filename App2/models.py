@@ -13,3 +13,8 @@ class Student(models.Model):
 
     def __str__(self):
         return self.FullName
+class Registration(models.Model):
+    Username =  models.CharField(max_length=20)
+    Email  =  models.EmailField()
+    PassWord =models.CharField(max_length=10)
+    Image =models.ImageField(upload_to='userpics')            

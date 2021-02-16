@@ -12,4 +12,5 @@ urlpatterns = [
     path('updateurl/<int:id>',views.update_details,name='update'),
     path('deleteurl/<int:id>',views.delete,name='delete'),
     path('signupurl/',views.signup,name='signup'),
+    path('userregistration/',views.registration),
 ]
