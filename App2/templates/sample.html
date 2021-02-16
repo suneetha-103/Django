@@ -1,0 +1,31 @@
+<!-- external css -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sample project</title>
+    
+     <link rel="stylesheet"  type="text/css" href="{%static 'css/styles.css'%}"> 
+     <!--@external java script
+         <script type="text/javascript" src='{% static "js/script.js" %}'>
+
+     </script> -->
+     <!-- *internal javascript*
+     <script type='text/css'>
+         alert('welcome to  giet wepage')
+     </script> -->
+
+    <!-- internal css
+        <style type="text/css">h1{
+        color:cyan;
+    } <style>-->
+</head>
+<body>
+    
+        <h2>welcome to GIET college</h2>
+        <img src="{% static 'images/sample.jpg'%}">
+</body>
+</html>
