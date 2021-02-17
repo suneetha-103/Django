@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import pymysql
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -77,12 +78,24 @@ WSGI_APPLICATION = 'DjangoProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+DATABASES={
+    'default':{
+     'ENGINE':'django.db.backends.mysql',
+    'NAME':'mysql_db',
+    'USER':'root',
+    'PASSWORD':'',
+    'HOST':'',
+    'PORT':'',
 }
+}
+
+pymysql.install_as_MySQLdb()
 
 
 # Password validation
@@ -125,3 +138,13 @@ STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK='bootstrap4'
 MEDIA_ROOT = os.path.join(BASE_DIR,'App2/static/images')
 MEDIA_URL = '/images/'
+# Email configuration
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp@gmail.com'
+EMAIL_HOST = 587
+EMAIL_HOST_USER = 'nagasunitha301@gmail.com'
+EMAIL_HOST_PASSWORD ='16295016'
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL='profile'
+LOGOUT_REDIRECT_URL='logout'

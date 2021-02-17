@@ -1,9 +1,13 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 import random
-from App2.models import Student,Registration
-from App2.forms import StudentForm
+from App2.models import Student,Registration,UserProfile
+from App2.forms import StudentForm,RegisterForm
 from django.contrib import messages
+from DjangoProject import settings
+from django.core.mail import send_mail
+from django.contrib.auth.models import User
+ 
 
 # Create your views here.
 def stat(request):
@@ -74,5 +78,27 @@ def registration(request):
         email=request.POST.get('email')
         im=request.FILES['image']
         Registration.objects.create(Username=uname,Email=email,PassWord=password,Image=im)
-        return HttpResponse("ok....")
+        sub='reg welcome message'
+        body='Username'+uname+'PassWord'+password
+        receiver=email
+        sender=settings.EMAIL_HOST_USER
+        send_mail(sub,body,sender,[receiver])
+        # return HttpResponse("ok....")
+        return redirect('showdata')
     return render(request,'registration.html')
+def showdata(request):
+    data=Registration.objects.all()
+    return render(request,'showdata.html',{'data':data})
+def signupform(request):
+    if request.method=='POST':
+        sform=RegisterForm(request.POST)
+        if sform.is_valid:
+            sform.save()
+            return HttpResponse("Succesfully Rgistered")
+    else:
+        sform=RegisterForm()
+        return render(request,'signupform.html',{'sform':sform})    
+def profile(request):
+    user = user.objects.get(request.user.id)
+    pro = UserProfile.objects.get(user=user) 
+    return render(request,'profile.html',{'user':user,'pro':pro})    
